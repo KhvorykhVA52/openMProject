@@ -1,0 +1,4 @@
+Size=10, Serial=0.000000 сек
+Size=10, Parallel=0.003000 сек
+Size=10, Serial=0.000000 сек
+Size=10, Parallel=0.004000 сек
