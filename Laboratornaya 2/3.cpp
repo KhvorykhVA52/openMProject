@@ -196,7 +196,7 @@ int main() {
 
         fill_mats(A, B, N); // заполняем A и B значениями
 
-        SerialMM(A, B, C, N, false);              // прогрев кэша — первый запуск не записываем в файл
+        SerialMM(A, B, C, N, false);              // прогрев кэша — первый запуск a
         printf("Checksum: %.6f\n", checksum(C, N)); // проверяем что результат корректный
 
         SerialMM(A, B, C, N, true);       // повторный замер — уже пишем в файл

@@ -22,7 +22,7 @@
 void ProcessInit (double* &pMatrix, double* &pVector, double* &pResult, int &Size) { //double* указатель, т.e адрес в памяти где лежат числа типа double
     // & — ссылка на указатель, чтобы функция могла изменить сам указатель
     printf("Введите размер матрицы: "); // запрос размера у пользователя
-    scanf("%d", &Size);                 // считываем размер в переменную Size
+    scanf("%d", &Size);                 // считываем размер в переменную Size   
     
     pMatrix = new double[Size * Size];  // выделяем память под матрицу N×N
     pVector = new double[Size];         // выделяем память под вектор длиной N
@@ -39,7 +39,7 @@ void ProcessInit (double* &pMatrix, double* &pVector, double* &pResult, int &Siz
 }
 
 // Последовательное умножение матрицы на вектор
-void SerialProduct (double* pMatrix, double* pVector, double* pResult, int Size) {
+void SerialProduct (double* pMatrix, double* pVector, double* pResult, int Size) { // вход данные, которая фукнкция получает послер работы
     double start = omp_get_wtime();       // запоминаем время начала
     for (int i = 0; i < Size; i++) {      // цикл по строкам матрицы i — номер строки матрицы
         pResult[i] = 0.0;                 // обнуляем i-й элемент результата 
@@ -91,10 +91,10 @@ int main () {
     double* pResult; // указатель на вектор результата
     int Size;        // размер матрицы
 
-    ProcessInit (pMatrix, pVector, pResult, Size);    // инициализация данных
-    SerialProduct (pMatrix, pVector, pResult, Size);  // последовательное умножение
-    ParallelProduct (pMatrix, pVector, pResult, Size);// параллельное умножение
-    ProcessTerminate(pMatrix, pVector, pResult, Size);// освобождение памяти
+    ProcessInit (pMatrix, pVector, pResult, Size);    // функция, которая делает все работу 
+    SerialProduct (pMatrix, pVector, pResult, Size);  // умножение матрицы на вектор одним поток
+    ParallelProduct (pMatrix, pVector, pResult, Size);// параллельное умножение, также как и в serial но несколько потоков
+    ProcessTerminate(pMatrix, pVector, pResult, Size);// освобождение памяти 
 
     system("pause"); // ждём нажатия клавиши перед закрытием консоли
     return 0;        // завершаем программу
